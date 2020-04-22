@@ -9,12 +9,12 @@ library.add(faSpinner);
 const Spinner = props => {
     return (
         <FontAwesomeIcon
-                    icon="spinner"
-                    pulse
-                    size="7x"
-                    className="fa-faSpinner" 
-                    />
+            icon="spinner"
+            pulse
+            size="7x"
+            className="fa-faSpinner"
+        />
     )
 }
 
-export {Spinner};
+export { Spinner };

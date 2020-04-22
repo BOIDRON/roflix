@@ -1,1 +1,3 @@
 export * from './Homes';
+export * from './Details';
+export * from './NotFound';

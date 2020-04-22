@@ -1,56 +1,26 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Homes } from './routes';
-import { Header } from './components';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { Provider } from 'react-redux';
+
+import { Homes, Details, NotFound } from './routes';
+import { Header, Spinner } from './components';
 import { API_URL, API_KEY, IMAGE_BASE_URL, BACKDROP_SIZE } from './config';
+import store from './store';
+
 import './App.css';
 
 
 
 class App extends Component {
   state = {
-    loading: false,
-    movies: [
-      {
-        backdrop_path: "./images/joker-large.jpeg",
-        id: 475557,
-        overview:
-          "Dans les années 1980, à Gotham City, Arthur Fleck, un humoriste de stand-up raté, bascule dans la folie et devient le Joker.",
-        poster_path: "./images/Fast_small.jpg",
-        title: "Joker"
-      },
-
-      {
-        backdrop_path: "./images/joker-large.jpeg",
-        id: 475558,
-        overview:
-          "Dans les années 1980, à Gotham City, Arthur Fleck, un humoriste de stand-up raté, bascule dans la folie et devient le Joker.",
-        poster_path: "./images/Fast_small.jpg",
-        title: "Joker"
-      },
-
-      {
-        backdrop_path: "./images/joker-large.jpeg",
-        id: 475559,
-        overview:
-          "Dans les années 1980, à Gotham City, Arthur Fleck, un humoriste de stand-up raté, bascule dans la folie et devient le Joker.",
-        poster_path: "./images/Fast_small.jpg",
-        title: "Joker"
-      },
-
-      {
-        backdrop_path: "./images/joker-large.jpeg",
-        id: 475554,
-        overview:
-          "Dans les années 1980, à Gotham City, Arthur Fleck, un humoriste de stand-up raté, bascule dans la folie et devient le Joker.",
-        poster_path: "./images/Fast_small.jpg",
-        title: "Joker"
-      }],
+    loading: true,
+    movies: [],
 
     badge: 0,
-    image: "./images/joker-large.jpeg",
-    mTitle: "Joker",
-    mDesc: "Dans les années 1980, à Gotham City, Arthur Fleck, un humoriste de stand-up raté, bascule dans la folie et devient le Joker.",
+    image: null,
+    mTitle: "",
+    mDesc: "",
     activePage: 0,
     totalPages: 0,
     searchText: ""
@@ -126,14 +96,31 @@ class App extends Component {
   }
   render() {
     return (
-      <div className="App">
-        <Header badge={this.state.badge} />
-        <Homes
-          {...this.state}
-          onSearchClick={this.handleSearch}
-          onButtonClick={this.loadMore}
-        />
-      </div>
+      <Provider store={store}>
+        <BrowserRouter>
+          <div className="App">
+            <Header badge={this.state.badge} />
+            {!this.state.image ? (
+              <Spinner />
+            ) :
+              (
+                <Switch>
+                  <Route path="/" exact render={() => (
+                    <Homes
+                      {...this.state}
+                      onSearchClick={this.handleSearch}
+                      onButtonClick={this.loadMore}
+                    />
+                  )}
+                  />
+                  <Route path='/:id' exact component={Details} />
+                  <Route Component={NotFound} />
+                </Switch>
+
+              )}
+          </div>
+        </BrowserRouter>
+      </Provider>
     );
   }
 }

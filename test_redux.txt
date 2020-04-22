@@ -1,0 +1,33 @@
+const initialState = {
+  "nom": "romain",
+  "age": 38
+}
+const reducer = (state = initialState, action) => {
+  if(action.type ==="INCREMENT_AGE"){
+    return {
+      "nom": state.nom,
+      "age": state.age + action.playload
+    }
+  }
+  if(action.type ==="CHANGE_NAME"){
+    return {
+      "nom": action.playload,
+      "age": state.age
+    }
+  }
+  return state;
+}
+const store = Redux.createStore(reducer);
+store.getState()
+const action1 = {
+  type: "INCREMENT_AGE",
+  playload: 3
+}
+store.dispatch(action1)
+store.getState()
+const action2 = {
+  type: "CHANGE_NAME",
+  playload: "boby"
+}
+store.dispatch(action2);
+store.getState()

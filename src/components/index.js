@@ -10,3 +10,5 @@ export * from './Stars';
 export * from './ActorList';
 export * from './Actor';
 export * from './HeaderDetails';
+export * from './VideoPlayer';
+export * from './MvPlayerList';

@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import FontAwesome from 'react-fontawesome';
 import { Link } from 'react-router-dom';
+import {connect} from 'react-redux';
 
+import {addMovie, removeMovie } from '../actions/movie';
 import '../css/Poster.css';
 
-class Poster extends Component {
+class PosterComponent extends Component {
 
     state = {
         hover: false
@@ -22,9 +24,11 @@ class Poster extends Component {
     remove = () => {
         //à implémenter avec redux
         console.log('remove avec redux');
+        this.props.removeM(this.props.id)
     }
     add = () => {
         console.log('add avec redux');
+        this.props.addM(this.props.movie)
     }
 
     render() {
@@ -55,5 +59,13 @@ class Poster extends Component {
         )
     }
 }
+const mapDispatchToProps = dispatch => {
+    return {
+        addM : movie => dispatch(addMovie(movie)),
+        removeM : movieId => dispatch(removeMovie(movieId))
+    }
+}
+
+const Poster = connect(null, mapDispatchToProps)(PosterComponent);
 
 export { Poster }

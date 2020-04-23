@@ -9,24 +9,28 @@ export const movieReducer = (state = initialState, action) => {
 
     switch (action.type) {
         case ADD_MOVIE:
+            console.log('add movie called', action.payload);
             return {
-                movies: action.playload,
-                number: action.playload.length
+                movies: action.payload,
+                number: action.payload.length
             }
         case REMOVE_MOVIE:
+            console.log('remove movie called', action.payload);
             return {
-                movies: action.playload,
+                movies: action.payload,
                 number: state.number - 1
             }
         case GET_MOVIES:
+            console.log('get movies called', action.payload);
             return {
                 ...state,
-                movies: action.playload
+                movies: action.payload
             }
         case GET_NUMBER:
+            console.log('get number called', action.payload);
             return {
                 ...state,
-                number: action.playload
+                number: action.payload
             }
         default:
             return state;

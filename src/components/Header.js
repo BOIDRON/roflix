@@ -8,6 +8,9 @@ import '../css/Header.css';
 
 //Définir notre composant header
 class HeaderComponent extends Component {
+    componentDidMount(){
+        this.props.getNumber();
+    }
     render() {
         return (
             <div className="header">

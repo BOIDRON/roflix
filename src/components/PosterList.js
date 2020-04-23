@@ -9,6 +9,13 @@ class PosterList extends Component {
         return this.props.movies.map(movie => {
             const imgSrc = `${IMAGE_BASE_URL}/${POSTER_SIZE}/${movie.poster_path}`;
             wish = false;
+            if (this.props.localMovies){
+                this.props.localMovies.forEach(localMovies => {
+                    if(movie.id === localMovies.id) {
+                        wish = true
+                    }
+                })
+            }
             return (
                 <Poster
                     key={movie.id}

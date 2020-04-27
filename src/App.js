@@ -3,7 +3,7 @@ import axios from 'axios';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
-import { Homes, Details, NotFound } from './routes';
+import { Homes, Details, NotFound, MoviePlayer } from './routes';
 import { Header, Spinner } from './components';
 import { API_URL, API_KEY, IMAGE_BASE_URL, BACKDROP_SIZE } from './config';
 import store from './store';
@@ -113,6 +113,8 @@ class App extends Component {
                     />
                   )}
                   />
+                  <Route path='/player' exact component={MoviePlayer} />
+                  <Route path='/player/:id' exact component={MoviePlayer} />
                   <Route path='/:id' exact component={Details} />
                   <Route Component={NotFound} />
                 </Switch>

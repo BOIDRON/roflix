@@ -12,3 +12,4 @@ export * from './Actor';
 export * from './HeaderDetails';
 export * from './VideoPlayer';
 export * from './MvPlayerList';
+export * from './MvPlayerListItem';

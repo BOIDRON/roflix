@@ -1,6 +1,6 @@
 import { initializeApp } from 'firebase';
 
-export const initiFirebase = () => {
+export const initFirebase = () => {
     var firebaseConfig = {
         apiKey: "AIzaSyDlaS-AtglIGOTQU9VKAL5x4419C7TvQAg",
         authDomain: "roflix-5707f.firebaseapp.com",
@@ -10,5 +10,5 @@ export const initiFirebase = () => {
         messagingSenderId: "876772187368",
         appId: "1:876772187368:web:387d505afde3db9f60fd5d"
     };
+    initializeApp(firebaseConfig);
 }
-initializeApp(firebaseConfig);

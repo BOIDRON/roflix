@@ -12,3 +12,5 @@ export const convertMoney = money => {
     });
     return formatter.format(money);
 }
+
+export const ROFLIX_APP_LOGGEDIN = "ROFLIX_APP_LOGGEDIN";
